@@ -1,0 +1,24 @@
+{
+  "name": "watermeter_web",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000W\u0000a\u0000t\u0000e\u0000r\u0000M\u0000e\u0000t\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natthamon5/WaterMeter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Natthamon5/WaterMeter/issues"
+  },
+  "homepage": "https://github.com/Natthamon5/WaterMeter#readme",
+  "dependencies": {
+    "dropzone": "^6.0.0-beta.2"
+  }
+}
