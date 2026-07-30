@@ -72,6 +72,10 @@ function typeValidation(type){
 }
 
 function listFile(file){
+    if (pendingFiles.some(item => item.file.name === file.name)) {
+        alert(`ไฟล์ชื่อ "${file.name}" มีอยู่ในรายการแล้ว`);
+        return; 
+    }
     listSection.classList.add('active');
     var li = document.createElement('li');
     li.classList.add('pending');
@@ -203,9 +207,26 @@ function listResult(file, li) {
         if (http.readyState === 4) {
             var div = document.createElement('div');
             div.classList.add('result');
+
+            let isResultError = false;
             if (http.status === 200) {
                 // Parse JSON response
                 const jsonResponse = JSON.parse(http.responseText);
+
+                const digitStr = String(jsonResponse.digit || "").trim();
+                const roomStr = String(jsonResponse.room || "").trim();
+                
+                isResultError = (digitStr.length !== 4 || roomStr.length !== 3);
+
+                if (digitStr.length !== 4 || roomStr.length !== 3) {
+                    div.style.border = "2px solid red"; 
+                    div.style.backgroundColor = "#ffe6e6";
+                }
+                // const errorStyle = 'border: 2px solid red;';
+
+                // const meterStyle = digitStr.length !== 4 ? `style="${errorStyle}"` : '';
+                // const roomStyle = roomStr.length !== 3 ? `style="${errorStyle}"` : '';
+
                 // console.log("Prediction:", jsonResponse);
                 div.innerHTML = `
                 <div class="icons">
@@ -238,6 +259,7 @@ function listResult(file, li) {
                 });
             } else {
                 console.error("Error:", http.responseText);
+                isResultError = true;
                 div.innerHTML = `
                 <div class="icons">
                     <svg xmlns="http://www.w3.org/2000/svg" class="cross" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
@@ -280,7 +302,21 @@ function listResult(file, li) {
                 pendingFiles[resubmitIndex].resubmitStatus = !pendingFiles[resubmitIndex].resubmitStatus;
                 div.classList.toggle('checked');
             }
-            itemContainer.append(div);
+            // itemContainer.append(div);
+            if (isResultError) {
+                div.classList.add('error-result');
+                div.style.border = "2px solid red";
+                div.style.backgroundColor = "#ffe6e6";
+                itemContainer.append(div); 
+            } else {
+                const firstErrorNode = itemContainer.querySelector('.error-result');
+                
+                if (firstErrorNode) {
+                    itemContainer.insertBefore(div, firstErrorNode);
+                } else {
+                    itemContainer.append(div);
+                }
+            }
             completedRequests++;
             fileProgressSpan.innerHTML = `${completedRequests}/${totalRequests}`
             if(totalRequests === completedRequests){
@@ -298,6 +334,10 @@ function checkEmptyResult() {
 }
 
 function listResubmit(file){
+    if (resubmitFiles.some(item => item.file.name === file.name)) {
+        alert(`ไฟล์ชื่อ "${file.name}" มีอยู่ในรายการแล้ว`);
+        return; // ออกจากฟังก์ชันทันทีหากชื่อซ้ำ
+    }
     resubmitListSection.classList.add('active');
     var li = document.createElement('li');
     li.classList.add('resubmit-pending');

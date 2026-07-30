@@ -252,7 +252,7 @@ body{
 }
 .file-progress{
   display: none;
-  position: absolute;
+  position:fixed;
   left: 15px;
   top: 0;
   width: 80px;
