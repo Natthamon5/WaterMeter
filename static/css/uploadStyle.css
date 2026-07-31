@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+body{
+  padding: 120px;
+  margin: 0px;
+}
+*{
+  font-family: 'Ubuntu', sans-serif;
+}
+.container,
+.resubmit-overlay{
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  min-height: 545px;
+  margin: auto;
+  padding-top: 20px;
+}
+.resubmit-overlay{
+  display: none;
+}
+.drop-section,
+.resubmit-drop-section{
+  min-height: 400px;
+  border: 2px dashed #aeaeae;
+  background-color: #e9e9e9;
+  /* background-image: linear-gradient(180deg, white, #dadada); */
+  margin: 5px 35px 35px 35px;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.drop-section div.col:first-child,
+.resubmit-drop-section div.col:first-child{
+  opacity: 1;
+  visibility: visible;
+  transition-duration: 0.2s;
+  transform: scale(1);
+  width: 200px;
+  margin: auto;
+}
+.drop-section div.col:last-child,
+.resubmit-drop-section div.col:last-child{
+  font-size: 40px;
+  font-weight: 700;
+  color: #c9c9c9;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  width: 200px;
+  height: 55px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.6);
+  transition-duration: 0.2s;
+}
+.drag-over-effect div.col:first-child{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.1);
+}
+.drag-over-effect div.col:last-child{
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+.drop-section .cloud-icon,
+.resubmit-drop-section .cloud-icon{
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.drop-section span,
+.drop-section button,
+.resubmit-drop-section span,
+.resubmit-drop-section button{
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.drop-section button,
+.resubmit-drop-section button{
+  color: #5874C6;
+  border: 1px solid #5874C6;
+  outline: none;
+  padding: 7px 20px;
+  border-radius: 2px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.drop-section input,
+.resubmit-drop-section input{
+  display: none;
+}
+/* "drag-over-effect" class will be use in js */
+.drag-over-effect div.col:first-child{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.1);
+}
+.drag-over-effect div.col:last-child{
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.list-section,
+.resubmit-list-section{
+  display: none;
+  text-align: left;
+  margin: 0px 35px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.list-section.active,
+.resubmit-list-section.active{
+  display: block;
+}
+.submit-btn,
+.resubmit-submit-btn{
+  text-align: center;
+}
+.submit-btn button,
+.resubmit-submit-btn button{
+  display: none;
+  color: #5874C6;
+  border: 1px solid #5874C6;
+  outline: none;
+  padding: 7px 20px;
+  border-radius: 2px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.list-section .list-title,
+.resubmit-list-section .list-title{
+  font-size: 0.95rem;
+  color: #707EA0;
+}
+.list-section li,
+.resubmit-list-section li{
+  display: flex;
+  margin: 15px 0px;
+  padding: 6px 0px;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+}
+.list-section li:hover,
+.resubmit-list-section li:hover{
+  box-shadow: #dadada 0px 0px 4px 0px, #d0d0d0 0px 12px 16px 0px;
+}
+.list-section li .col,
+.resubmit-list-section li .col{
+  flex: .1;
+}
+.list-section li .col:nth-child(1),
+.resubmit-list-section li .col:nth-child(1){
+  flex: .2;
+  text-align: center;
+  padding: 5px;
+  height: 148px;
+}
+.list-section li .col:nth-child(1) img,
+.resubmit-list-section li .col:nth-child(1) img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.list-section li .col:nth-child(2),
+.resubmit-list-section li .col:nth-child(2){
+  flex: .7;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #3e4046;
+  padding: 8px 10px;
+}
+.list-section li .col:nth-child(2) div.name,
+.resubmit-list-section li .col:nth-child(2) div.name{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  display: inline-block;
+}
+.list-section li .col .file-size,
+.resubmit-list-section li .col .file-size{
+  font-size: 0.75rem;
+  margin-top: 3px;
+  color: #707EA0;
+}
+.list-section li .col svg.cross,
+.resubmit-list-section li .col svg.resubmit-cross{
+  fill: #8694d2;
+  background-color: #dee6fd;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+.resubmit-overlay .go-back-btn button{
+  display: none;
+  font-size: 1.4rem;
+  background-color: white;
+  color: rgb(81, 163, 230);
+  border: 3px solid rgb(81, 163, 230);
+  border-radius: 10px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 30px;
+  padding: 0px 20px;
+  width: auto;
+  height: 70px;
+}
+
+
+.overlay{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: auto;
+  text-align: center;
+  visibility: hidden;
+  transform: translateY(-1000px);
+  transition: all 0.2s ease-out;
+  opacity: 0;
+}
+.overlay.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.file-progress-circle{
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(#6b99fd 0%, #ddd 0%);
+  border: 6px solid #ddd;
+  border-top: 6px solid #6b99fd;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.file-progress{
+  display: none;
+  position:fixed;
+  left: 15px;
+  top: 0;
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+  font-size: 1.4rem;
+}
+.file-progress span{
+  position: relative;
+  left: 30px;
+  top: 125px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1.4rem;
+  color: #3e4046;
+}
+.item-section{
+    max-width: 1330px;
+    height: 100%;
+    display: inline-block;
+}
+.items{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+.items .result {
+    background-color: rgb(226, 242, 255);
+    position: relative;
+    padding: 16px;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    width: 210px;
+    height: 340px;
+    font-size: 20px;
+}
+.items .result div{
+    text-align: center;
+}
+.items .result .icons svg{
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    border-radius: 50%;
+}
+.items .result .check-icon{
+    display: none;
+    border: 3px solid rgb(81, 163, 230);
+    fill: rgba(81, 163, 230, 0);
+}
+.items.select-resubmit .result.checked .check-icon{
+    fill: rgba(81, 163, 230, 1);
+}
+.items .result .cross {
+    border: 3px solid red;
+    fill: red;
+}
+.items.select-resubmit .cross{
+    display: none;
+}
+.items.select-resubmit .check-icon{
+    display: block;
+}
+.checkbox.checked{
+    display: block;
+}
+.items .preview{
+    height: 190px;
+    width: 100%;
+    margin-top: 25px;
+}
+.items .preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.result-file-name,
+.meter-number,
+.room-number{
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.result-file-name{
+    font-size: 14px;
+}
+.meter-number,
+.room-number{
+    border: 2px solid black;
+}
+
+.option-section{
+    text-align: center;
+}
+.option-section div:nth-child(2){
+    display: none;
+}
+.option-section.resubmit-option div:nth-child(1){
+    display: none;
+}
+.option-section.resubmit-option div:nth-child(2){
+    display: block;
+}
+.option-section button{
+    font-size: 1.4rem;
+    background-color: white;
+    color: rgb(81, 163, 230);
+    border: 3px solid rgb(81, 163, 230);
+    border-radius: 10px;
+    margin: 30px;
+    padding: 0px 30px;
+    width: auto;
+    height: 70px;
+}
+.option-section span{
+  display: block;
+  margin-top: 20px;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/uploadStyle.css">
+    <!-- {{ url_for('static', filename='css/uploadStyle.css') }} -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="file-progress">
+            <span></span>
+            <div class="file-progress-circle"></div>
+    </div>
+    <div class="container">
+        <div class="drop-section">
+            <div class="col">
+                <div class="cloud-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#666666"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm56-97h489L578-473 446-302l-93-127-117 152Zm-56 97v-600 600Zm195.5-404.62q14.5-14.62 14.5-35.5 0-20.88-14.62-35.38-14.62-14.5-35.5-14.5-20.88 0-35.38 14.62-14.5 14.62-14.5 35.5 0 20.88 14.62 35.38 14.62 14.5 35.5 14.5 20.88 0 35.38-14.62Z"/></svg>
+                </div>
+                <span>Drag & Drop your files here</span>
+                <span>OR</span>
+                <button class="file-selector">Upload</button>
+                <input type="file" class="file-selector-input" multiple>
+            </div>
+
+            <div class="col">
+                <div class="drop-here">Drop here</div>
+            </div>
+        </div>
+
+        <div class="list-section">
+            <div class="submit-btn">
+                <button>Submit</button>
+            </div>
+
+            <div class="list">
+                <!-- <li class="pending">
+                    <div class="col">
+                        <img src="/static/img/image.png" alt="placeholder">
+                    </div>
+
+                    <div class="col">
+                        <div class="file-name">
+                            <div class="name">File Name Here</div>
+                        </div>
+                        <div class="file-size">2.2 MB</div>
+                    </div>
+
+                    <div class="col">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="cross" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                    </div>
+                </li> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <div class="item-section">
+            <div class="items">
+                <!-- <div class="result">
+                    <div class="icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="cross" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+                    </div>
+
+                    <div class="preview">
+                        <img src="/uploads/single (1).jpg" alt="placeholder">
+                    </div>
+                    
+                    <div>
+                        <div class="result-file-name">File Names</div>
+                    </div>
+
+                    <div>
+                        <div class="meter-number">เลขมิเตอร์ : 9999</div>
+                    </div>
+
+                    <div>
+                        <div class="room-number">เลขห้อง : 999</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="option-section">
+            <div>
+                <button class="resubmit">Re-Submit or Add more</button>
+                <button class="export">Export</button>
+            </div>
+            <div>
+                <span>
+                    Please select which one you want to re-submit before confirm or simply just confirm to add new ones
+                </span>
+                <button class="cancel-resubmit">Cancel</button>
+                <button class="confirm-resubmit">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="resubmit-overlay">
+        <div class="go-back-btn">
+            <button>Go back</button>
+        </div>
+        <div class="resubmit-drop-section">
+            <div class="col">
+                <div class="cloud-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#666666"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm56-97h489L578-473 446-302l-93-127-117 152Zm-56 97v-600 600Zm195.5-404.62q14.5-14.62 14.5-35.5 0-20.88-14.62-35.38-14.62-14.5-35.5-14.5-20.88 0-35.38 14.62-14.5 14.62-14.5 35.5 0 20.88 14.62 35.38 14.62 14.5 35.5 14.5 20.88 0 35.38-14.62Z"/></svg>
+                </div>
+                <span>Drag & Drop your files here</span>
+                <span>OR</span>
+                <button class="resubmit-file-selector">Upload</button>
+                <input type="file" class="resubmit-file-selector-input" multiple>
+            </div>
+
+            <div class="col">
+                <div class="drop-here">Drop here</div>
+            </div>
+        </div>
+
+        <div class="resubmit-list-section">
+            <div class="resubmit-submit-btn">
+                <button>Re-submit</button>
+            </div>
+
+            <div class="resubmit-list">
+                <!-- <li class="resubmit-pending">
+                    <div class="col">
+                        <img src="/static/img/image.png" alt="placeholder">
+                    </div>
+
+                    <div class="col">
+                        <div class="file-name">
+                            <div class="name">File Name Here</div>
+                        </div>
+                        <div class="file-size">2.2 MB</div>
+                    </div>
+
+                    <div class="col">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="resubmit-cross" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                    </div>
+                </li> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/uploadScript.js"></script>
+    <!-- {{ url_for('static', filename='js/uploadScript.js') }} -->
+</body>
+</html>
