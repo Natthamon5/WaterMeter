@@ -224,16 +224,19 @@ def full_predict(fileStorage):
     room_columns = group_digits_into_columns(room_digits_raw)
     room_selected, rejected_overlap_room = pick_best_per_column(room_columns)
 
-    meter_digits   = selected[:MAX_METER_DIGITS]   # เก็บแค่ 4 หลักแรก
+    meter_digits   = selected[:MAX_METER_DIGITS]   
     room_digits  = room_selected[:MAX_ROOM_DIGITS]
 
     meter_reading  = "".join(str(d['digit']) for d in meter_digits)
     room_number = "".join(str(d['digit']) for d in room_digits)
-    
+
+    meter_confidences = [f"{d['conf']:.2f}" for d in meter_digits]
+    final_conf_str = ", ".join(meter_confidences)
     
     predictedData = {
         'predicted_img': resizeImage(cropped_img),
         'digit': meter_reading,
-        'room': room_number
+        'room': room_number,
+        'confidence': final_conf_str
     }
     return predictedData
