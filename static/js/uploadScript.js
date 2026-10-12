@@ -365,7 +365,6 @@ resubmitBtn.onclick = () => {
     
 }
 exportBtn.onclick = () => {
-    exportBtn.onclick = () => {
     if (resultFiles.length === 0) {
         alert('ยังไม่มีผลลัพธ์ให้ส่งออก');
         return;
@@ -463,8 +462,6 @@ confirmResubmitBtn.onclick = () => {
     resubmitOverlay.style.display = "block";
 }
 
-
-
 resubmitFileSelector.onclick = () => resubmitFileSelectorInput.click()
 resubmitFileSelectorInput.onchange = () => {
     goBackBtn.style.display = "none";
@@ -552,29 +549,4 @@ resubmitSubmitBtn.onclick = () => {
     resubmitFiles.length = 0;
     resubmitOverlay.style.display = "none";
     overlayContainter.style.display = "Block";
-}
-}
-
-const btnSheet = document.querySelector('.btn-sheet');
-
-btnSheet.onclick = () => {
-    exportModalOverlay.classList.remove('active');
-    
-    const results = resultFiles.map(r => ({
-        file_name: r.file_name,
-        digit: r.digit,
-        room: r.room,
-        confidence: r.confidence,
-        status: r.status,
-        error_message: r.error_msg
-    }));
-
-    fetch('/export_sheets', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ results })
-    })
-    .then(res => res.json())
-    .then(data => alert('บันทึกลง Google Sheets สำเร็จ!'))
-    .catch(err => alert('เกิดข้อผิดพลาดในการบันทึก'));
 }

@@ -21,7 +21,6 @@ def index():
 def detections():
     try:
         image = request.files["file"]
-
         predictedFile = prediction.full_predict(image)
         return jsonify(predictedFile)
     except Exception as e:

@@ -2,6 +2,7 @@ node_modules/
 meter_env/
 venv/
 
+pycache/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -29,10 +30,7 @@ credentials.json
 .idea/
 .DS_Store
 Thumbs.db
-node_modules
-venv/
 
-pycache/
 *.pyc
 *.pyo
 *.pyd
@@ -40,15 +38,3 @@ pycache/
 *.egg-info/
 build/
 dist/
-
-*.log
-
-.env
-
-.vscode/
-.idea/
-
-.DS_Store
-Thumbs.db
-
-*.pt

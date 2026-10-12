@@ -5,10 +5,10 @@ import numpy as np
 from collections import defaultdict
 import os, base64
 
-model = YOLO('./meter.pt')
+model = YOLO('./yolov11s_meter_best2.pt')
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-model2_path = os.path.join(current_dir, 'best.pt')
+model2_path = os.path.join(current_dir, 'yolov11s_num_best2.pt')
 
 model2 = YOLO(model2_path)
 
