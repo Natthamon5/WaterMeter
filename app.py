@@ -66,6 +66,7 @@ def export():
                 raw_img = row.get("predicted_img")
                 if raw_img:
                     try:
+
                         if "base64," in raw_img:
                             clean_img = raw_img.split("base64,")[1]
                         else:
@@ -114,8 +115,10 @@ def export_sheets():
                 current_time,
                 row.get("file_name", ""),
                 row.get("digit", ""),
+                row.get("digit_confidence", ""),
                 row.get("room", ""),
-                row.get("confidence", ""),
+                row.get("room_confidence", ""),
+                # row.get("confidence", ""),
                 row.get("status", ""),
                 row.get("error_message", "")
             ])

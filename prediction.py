@@ -231,12 +231,13 @@ def full_predict(fileStorage):
     room_number = "".join(str(d['digit']) for d in room_digits)
 
     meter_confidences = [f"{d['conf']:.2f}" for d in meter_digits]
-    final_conf_str = ", ".join(meter_confidences)
+    room_confidences = [f"{d['conf']:.2f}" for d in room_digits]
     
     predictedData = {
         'predicted_img': resizeImage(cropped_img),
         'digit': meter_reading,
+        "digit_confidence": meter_confidences,
         'room': room_number,
-        'confidence': final_conf_str
+        "room_confidence": room_confidences,
     }
     return predictedData

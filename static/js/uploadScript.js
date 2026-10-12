@@ -9,7 +9,7 @@ const fileSelector = document.querySelector('.file-selector');
 const fileSelectorInput = document.querySelector('.file-selector-input');
 const submitBtn = document.querySelector('.submit-btn button');
 let pendingFiles = [];
-const maxPendingFiles = 20;
+const maxPendingFiles = 999;
 
 const overlayContainter = document.querySelector('.overlay');
 const resubmitBtn = document.querySelector('.resubmit');
@@ -153,7 +153,24 @@ function listResult(file, li) {
 
                     const digitStr = String(jsonResponse.digit || "").trim();
                     const roomStr = String(jsonResponse.room || "").trim();
+
+                    const digitConfStr = Array.isArray(jsonResponse.digit_confidence) 
+                        ? jsonResponse.digit_confidence.join(', ') 
+                        : (jsonResponse.digit_confidence || "-");
+
+                    const roomConfStr = Array.isArray(jsonResponse.room_confidence) 
+                        ? jsonResponse.room_confidence.join(', ') 
+                        : (jsonResponse.room_confidence || "-");
                     
+                    div.innerHTML = `
+                        ...
+                        <div>
+                            <div class="meter-number">เลขมิเตอร์ : ${jsonResponse.digit} (${digitConfStr})</div>
+                        </div>
+                        <div>
+                            <div class="room-number">เลขห้อง : ${jsonResponse.room} (${roomConfStr})</div>
+                        </div>
+                    `;
                     isResultError = (digitStr.length !== 4 || roomStr.length !== 3);
 
                     if (digitStr.length !== 4 || roomStr.length !== 3) {
@@ -195,8 +212,9 @@ function listResult(file, li) {
                         file_name: file.name,
                         predicted_img: jsonResponse.predicted_img,
                         digit: digitStr,
+                        digit_confidence: digitConfStr,
                         room: roomStr,
-                        confidence: jsonResponse.confidence ?? "-", 
+                        room_confidence: roomConfStr, 
                         status: status,
                         error_msg: errorMsg,
                         div,
@@ -369,20 +387,24 @@ exportBtn.onclick = () => {
         alert('ยังไม่มีผลลัพธ์ให้ส่งออก');
         return;
     }
-    exportModalOverlay.classList.add('active'); 
+    exportModalOverlay.classList.add('active');
 }
+
 closeExportModalBtn.onclick = () => {
     exportModalOverlay.classList.remove('active');
 }
+
 function handleExport(format) {
     exportModalOverlay.classList.remove('active'); 
 
     const results = resultFiles.map(r => ({
         file_name: r.file_name || '',
         digit: r.digit || '',
+        digit_confidence: r.digit_confidence || '',
         room: r.room || '',
+        room_confidence: r.room_confidence || '',
         predicted_img: r.predicted_img || '',
-        confidence: r.confidence || '-',
+        // confidence: r.confidence || '-',
         status: r.status || 'Success',
         error_message: r.error_msg || '-'
     }));
